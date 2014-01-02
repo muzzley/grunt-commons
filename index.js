@@ -2,7 +2,7 @@ var path = require('path');
 var pkg = require('./package.json');
 
 // 'muzzley-grunt-commons/node_modules/'
-var gruntPluginsPrefix = pkg.name + path.sep + 'node_modules' + path.sep;
+var PLUGINS_BASE_PATH = pkg.name + path.sep + 'node_modules' + path.sep;
 
 var GruntCommons = {
 
@@ -93,15 +93,29 @@ var GruntCommons = {
       }
     };
   },
-  
-  setup: function (grunt) {
+
+  /**
+   * Load and register the common Grunt plugins and tasks.
+   * 
+   * @param  {object} grunt   The Grunt object
+   * @param  {object} options An optional configuration object with the following properties:
+   *                          - pluginsBasePath: The base path where the common Grunt
+   *                          plugins are located. There should be no need to pass this
+   *                          parameter. Defaults to: 'muzzley-grunt-commons/node_modules/'
+   * @return {undefined}
+   */
+  setup: function (grunt, options) {
+
+    options = options || {};
+    var basePath = (typeof options.pluginsBasePath !== 'undefined') ? options.pluginsBasePath : PLUGINS_BASE_PATH;
+
     // Prefix the Grunt plugins with our own location because Grunt
     // will search for them in the filesystem.
-    grunt.loadNpmTasks(gruntPluginsPrefix + 'grunt-contrib-compress');
-    grunt.loadNpmTasks(gruntPluginsPrefix + 'grunt-git');
-    grunt.loadNpmTasks(gruntPluginsPrefix + 'grunt-shell');
-    grunt.loadNpmTasks(gruntPluginsPrefix + 'grunt-bump');
-    grunt.loadNpmTasks(gruntPluginsPrefix + 'grunt-contrib-copy');
+    grunt.loadNpmTasks(basePath + 'grunt-contrib-compress');
+    grunt.loadNpmTasks(basePath + 'grunt-git');
+    grunt.loadNpmTasks(basePath + 'grunt-shell');
+    grunt.loadNpmTasks(basePath + 'grunt-bump');
+    grunt.loadNpmTasks(basePath + 'grunt-contrib-copy');
 
     grunt.registerTask('package:nomodules', ['gitarchive:master']);
     grunt.registerTask('package:full', ['gitarchive:master', 'shell:extractArchive', 'shell:npmInstall', 'compress:finalPackage']);
