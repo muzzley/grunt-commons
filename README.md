@@ -10,12 +10,9 @@ In order to use this module, you should first add grunt to your `devDependencies
 
     npm install grunt --save-dev
 
-Then, edit `package.json` to include this project's git reference so that you end up with something like this:
+Then, install the actual `muzzley-grunt-commons` package by referencing its Git repo like in this example:
 
-    "devDependencies": {
-      "grunt": "~0.4.2",
-      "muzzley-grunt-commons": "git+ssh://this-projects-location#master"
-    }
+    npm install git+ssh://this-projects-location#master --save-dev
 
 ## Setup
 
