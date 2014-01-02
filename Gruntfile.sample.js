@@ -16,6 +16,6 @@ module.exports = function(grunt) {
   gruntCommons.setup(grunt);
 
   // Load project-specific Grunt plugins and register tasks
-  //grunt.loadNpmTasks('grunt-contrib-compress');
-  //grunt.registerTask('package:nomodules', ['gitarchive:master']);
+  //grunt.loadNpmTasks('some-grunt-npm-plugin');
+  //grunt.registerTask('sometask', ['someGruntModule:taskname']);
 };

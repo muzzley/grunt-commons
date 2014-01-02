@@ -12,13 +12,37 @@ In order to use this module, you should first add grunt to your `devDependencies
 
 Then, install the actual `muzzley-grunt-commons` package by referencing its Git repo like in this example:
 
-    npm install git+ssh://this-projects-location#master --save-dev
+    npm install git+https://github.com/muzzley/grunt-commons.git#master --save-dev
 
 ## Setup
 
 Copy the file `Gruntfile.sample.js` to your project and rename it to `Gruntfile.js`. Use its sample configuration as the starting point.
 
 The common Grunt configuration can be extended to include project-specific Grunt plugins and tasks. Have a look at the sample file for more details.
+
+### Gruntfile.js sample
+
+    var gruntCommons = require('muzzley-grunt-commons');
+
+    module.exports = function(grunt) {
+
+      var commonsConfig = gruntCommons.getInitConfig(grunt);
+
+      // Extend the common configuration with specific plugin tasks
+      //commonsConfig.someGruntModule = {
+      //  taskName: {
+      //    taskconfig: { }
+      //  }
+      //};
+
+      grunt.initConfig(commonsConfig);
+
+      gruntCommons.setup(grunt);
+
+      // Load project-specific Grunt plugins and register tasks
+      //grunt.loadNpmTasks('grunt-contrib-compress');
+      //grunt.registerTask('package:nomodules', ['gitarchive:master']);
+    };
 
 ## Usage
 
