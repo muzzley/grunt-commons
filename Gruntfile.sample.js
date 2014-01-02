@@ -1,12 +1,13 @@
 var gruntCommons = require('muzzley-grunt-commons');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
+  // Get the common Grunt config object
   var commonsConfig = gruntCommons.getInitConfig(grunt);
 
-  // Extend the common configuration with specific plugin tasks
+  // Extend the common configuration with other project-specific plugin tasks
   //commonsConfig.someGruntModule = {
-  //  taskName: {
+  //  taskname: {
   //    taskconfig: { }
   //  }
   //};

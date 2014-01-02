@@ -1,17 +1,14 @@
 # Muzzley Grunt Commons
 
-This repository provides the common Grunt tasks used among several Muzzley projects.
+This repository provides the common Grunt tasks used in several Muzzley projects.
 
-Instead of constantly repeating the same boilerplate Grunt configuration, we can simply require this module and keep all projects' Grunt configuration up-to-date and equal.
+It also serves as an example for other teams on how to create common and reusable Grunt tasks. Instead of constantly repeating the same boilerplate Grunt configuration, we can simply require this module and keep all projects' Grunt configuration up-to-date and equal.
 
 ## Installation
 
-In order to use this module, you should first add grunt to your `devDependencies` like so:
+In order to use this module, you should first add `grunt` and this very module to your `devDependencies` like so:
 
     npm install grunt --save-dev
-
-Then, install the actual `muzzley-grunt-commons` package by referencing its Git repo like in this example:
-
     npm install git+https://github.com/muzzley/grunt-commons.git#master --save-dev
 
 ## Setup
@@ -24,13 +21,14 @@ The common Grunt configuration can be extended to include project-specific Grunt
 
     var gruntCommons = require('muzzley-grunt-commons');
 
-    module.exports = function(grunt) {
+    module.exports = function (grunt) {
 
+      // Get the common Grunt config object
       var commonsConfig = gruntCommons.getInitConfig(grunt);
 
-      // Extend the common configuration with specific plugin tasks
+      // Extend the common configuration with other project-specific plugin tasks
       //commonsConfig.someGruntModule = {
-      //  taskName: {
+      //  taskname: {
       //    taskconfig: { }
       //  }
       //};
@@ -40,8 +38,8 @@ The common Grunt configuration can be extended to include project-specific Grunt
       gruntCommons.setup(grunt);
 
       // Load project-specific Grunt plugins and register tasks
-      //grunt.loadNpmTasks('grunt-contrib-compress');
-      //grunt.registerTask('package:nomodules', ['gitarchive:master']);
+      //grunt.loadNpmTasks('some-grunt-npm-plugin');
+      //grunt.registerTask('sometask', ['someGruntModule:taskname']);
     };
 
 ## Usage
@@ -60,11 +58,12 @@ The usage is exactly the same as with any other Grunt setup. Just run:
 
 ## Included Tasks
 
-
 #### Packaging Tasks
 
+These tasks allow creating distributable tarballs.
+
 * **`package:nomodules`**: Creates a `tar.gz` file of the current project's master branch.
-* **`package:full`**: Creates a `tar.gz` file of the current project's master branch but includes a fully installed and compiled `node_modules/` folder.
+* **`package:full`**: Creates a `tar.gz` file of the current project's master branch but includes a fully installed and compiled `node_modules/` folder. When deploying this package, it is enough to run `npm rebuild`.
 
 #### Version Bumping Tasks
 
@@ -74,3 +73,9 @@ These are simply the tasks provided by the [grunt-bump](https://github.com/vojta
 * **`grunt bump:patch`**
 * **`grunt bump:minor`**
 * **`grunt bump:major`**
+
+## Why this works
+
+Grunt doesn't easily support loading plugins that aren't installed in the base project. That is, plugins must be in the `node_modules/` folder. However, by prepending a different path to the plugin name, we can trick the Grunt plugin loader into looking for plugins somewhere else. For instance, to load the `grunt-git` plugin, this project does the following:
+
+    grunt.loadNpmTasks('muzzley-grunt-commons/node_modules/grunt-git');
