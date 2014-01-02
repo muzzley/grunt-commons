@@ -1,8 +1,10 @@
 # Muzzley Grunt Commons
 
-This repository provides the common Grunt tasks used in several Muzzley projects.
+This repository provides the common Grunt tasks used in several [Muzzley](http://www.muzzley.com) projects.
 
 It also serves as an example for other teams on how to create common and reusable Grunt tasks. Instead of constantly repeating the same boilerplate Grunt configuration, we can simply require this module and keep all projects' Grunt configuration up-to-date and equal.
+
+This project shouldn't be used as is by anyone else - we might break backwards compatibility. Rather, it should serve as an example on how to minimize Grunt boilerplate. Just fork this repo and adapt it to your needs with the Grunt plugins and tasks you prefer.
 
 ## Installation
 
@@ -62,8 +64,8 @@ The usage is exactly the same as with any other Grunt setup. Just run:
 
 These tasks allow creating distributable tarballs.
 
-* **`package:nomodules`**: Creates a `tar.gz` file of the current project's master branch.
-* **`package:full`**: Creates a `tar.gz` file of the current project's master branch but includes a fully installed and compiled `node_modules/` folder. When deploying this package, it is enough to run `npm rebuild`.
+* **`package:nomodules`** : Creates a `tar.gz` file of the current project's master branch.
+* **`package:full`** : Creates a `tar.gz` file of the current project's master branch but includes a fully installed and compiled `node_modules/` folder. When deploying this package, it is enough to run `npm rebuild`.
 
 #### Version Bumping Tasks
 
