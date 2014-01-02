@@ -1,6 +1,6 @@
 {
   "name": "muzzley-grunt-commons",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The common Grunt tasks for the Muzzley projects.",
   "main": "index.js",
   "scripts": {
