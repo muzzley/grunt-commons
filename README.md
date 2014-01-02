@@ -64,17 +64,17 @@ The usage is exactly the same as with any other Grunt setup. Just run:
 
 These tasks allow creating distributable tarballs.
 
-* **`package:nomodules`** : Creates a `tar.gz` file of the current project's master branch.
-* **`package:full`** : Creates a `tar.gz` file of the current project's master branch but includes a fully installed and compiled `node_modules/` folder. When deploying this package, it is enough to run `npm rebuild`.
+* `package:nomodules`: Creates a `tar.gz` file of the current project's master branch.
+* `package:full`: Creates a `tar.gz` file of the current project's master branch but includes a fully installed and compiled `node_modules/` folder. When deploying this package, it is enough to run `npm rebuild`.
 
 #### Version Bumping Tasks
 
 These are simply the tasks provided by the [grunt-bump](https://github.com/vojtajina/grunt-bump) plugin. See that plugin's documentation for full details.
 
-* **`grunt bump`**
-* **`grunt bump:patch`**
-* **`grunt bump:minor`**
-* **`grunt bump:major`**
+* `grunt bump`
+* `grunt bump:patch`
+* `grunt bump:minor`
+* `grunt bump:major`
 
 ## Why this works
 
