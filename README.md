@@ -81,3 +81,7 @@ These are simply the tasks provided by the [grunt-bump](https://github.com/vojta
 Grunt doesn't easily support loading plugins that aren't installed in the base project. That is, plugins must be in the `node_modules/` folder. However, by prepending a different path to the plugin name, we can trick the Grunt plugin loader into looking for plugins somewhere else. For instance, to load the `grunt-git` plugin, this project does the following:
 
     grunt.loadNpmTasks('muzzley-grunt-commons/node_modules/grunt-git');
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/muzzley/grunt-commons/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
